@@ -1,0 +1,123 @@
+.contenedor {
+  width: 18%;
+  border-radius: 10px;
+  margin: 100px auto;
+  border: 1px solid #c3c3c3; 
+  padding: 10px 10px;
+  background-color: white;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  min-width: 369px;
+  
+       
+}
+
+.marcador_contenedor {
+
+  width: 300px;
+  margin-bottom: 10px;
+  /*background-color: #ffffff;*/
+  
+  display: flex;
+  justify-content: space-between;
+  /*border: 1px solid black;*/
+  
+}
+
+.marcador {
+
+  width: 100px;
+  border-radius: 8px;
+  border: 5px solid transparent;
+  box-shadow: 1px 1px 10px;
+  padding: 0px 10px;  
+   
+  display:flex;
+  justify-content: space-between;
+    
+}
+
+.activo {
+  border-bottom-color: #14bdac;
+}
+
+
+
+.tablero-wrap {
+  width: 100%;
+  margin: 0px 0px;
+  padding: 10px;
+  background-color: #14bdac;
+  display: block;
+}
+
+
+.tablero {
+  
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows:    repeat(3, 100px);
+  align-content: center; 
+  justify-content: center;
+  
+  
+
+}
+
+.casilla {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  
+  
+  
+}
+
+
+
+.pantalla-ganador-x {
+  width:  339px;
+  height: 307px;
+  background-color: #14bdac;
+
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+
+  border: 1px solid red;
+}
+
+.close-button {
+  
+  font-size: 30px;
+  color: white;
+  text-align: right;
+  padding-right: 10px;
+   
+}
+
+.close-button:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.imagen-ganador {     
+    margin:auto;
+   
+}
+
+
+
+
+.reset-game {
+  margin-top: 50px;
+  color: #60d5ea;
+  font-weight: 500;
+}
+  
+
