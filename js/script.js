@@ -50,12 +50,10 @@ const marcar_square = (id_square, square) => {
         }else {
            games_O++ 
            document.getElementById('img-winner').innerHTML = img_winner_O
-           document.getElementById('score_circle').innerHTML = games_O 
-           
+           document.getElementById('score_circle').innerHTML = games_O            
         }               
     
-    }else if (!squares_board.includes(0)){
-        
+    }else if (!squares_board.includes(0)){        
         document.getElementById('board').style.display = 'none'
         document.getElementById('winner_screen').style.display =  'flex'
         document.getElementById('img-winner').innerHTML = img_tie
@@ -96,11 +94,9 @@ const there_is_a_winner = () => {
                 counter_x++
             }                
             if (squares_O.includes(winning_combinations[i][j])){
-                counter_O++
-                
+                counter_O++                
             }            
-            if (counter_x  == 3 || counter_O == 3){
-                                
+            if (counter_x  == 3 || counter_O == 3){                                
                 return true
             }                    
         }
