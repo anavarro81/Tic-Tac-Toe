@@ -1,5 +1,5 @@
-const casillas_tablero = [0,0,0,0,0,0,0,0,0];
-const combinaciones_ganadoras = [ [0,1,2],
+const squares_board = [0,0,0,0,0,0,0,0,0]
+const winning_combinations = [ [0,1,2],
                                   [3,4,5],  
                                   [6,7,8],
                                   [0,3,6],
@@ -7,168 +7,127 @@ const combinaciones_ganadoras = [ [0,1,2],
                                   [2,5,8],
                                   [2,4,6],
                                   [0,4,8]
-                              ];
-
-casillas_x = [];
-casillas_O = [];
-
-const img_ganador_x = '<img src="/img/Ganador_X.png" alt=""></img>';
-const img_ganador_O = '<img src="/img/Ganador_O.png" alt="No se encuentra imagen ganador X"></img>';
-const img_empate = '<img src="/img/Empate.png" alt=""></img>';
-
-const url_x = '<img src="img/ficha_x.png" alt=""> </img>';
-const url_circulo = '<img src="img/ficha_círculo.png" alt="">';
-turno = 'turno_x';
-
-partidas_x = 0;
-partidas_O = 0;
-
-function validar_casilla(casilla) {
-
-    let id_casilla = 'c' + casilla;
-
-    marcar_casilla (id_casilla, casilla);
-    
-    cambiar_turno();
-    
-}
-
-function marcar_casilla (id_casilla, casilla) {
+                              ]
 
 
+squares_x = []
+squares_O = []
 
-    if (casillas_tablero[casilla] == 0) {
-        
-        
-        if (turno == 'turno_x') {
-            document.getElementById(id_casilla).innerHTML = url_x;
-            casillas_x.push(casilla);
+const img_winner_x = '<img src="/img/Ganador_X.png" alt=""></img>'
+const img_winner_O = '<img src="/img/Ganador_O.png" alt="No se encuentra imagen ganador X"></img>'
+const img_tie = '<img src="/img/Empate.png" alt=""></img>'
+
+const url_x = '<img src="img/ficha_x.png" alt=""> </img>'
+const url_circle = '<img src="img/ficha_círculo.png" alt="">'
+turn = 'turn_x'
+
+games_x = 0
+games_O = 0
+
+const marcar_square = (id_square, square) => {
+
+    if (squares_board[square] == 0) {              
+        if (turn == 'turn_x') {
+            document.getElementById(id_square).innerHTML = url_x
+            squares_x.push(square)
         }
         else {
-            document.getElementById(id_casilla).innerHTML = url_circulo;
-            casillas_O.push(casilla);
+            document.getElementById(id_square).innerHTML = url_circle
+            squares_O.push(square)
         }
-
-        // Marcamos la casilla para que no se pueda volver a pulsar.
-        casillas_tablero[casilla] = 1
-        
+        // check the square, to avoid to be pressed again. 
+        squares_board[square] = 1        
     }
-
    
-    if (hay_ganador()) {
-
+    if (there_is_a_winner()) {                        
+        document.getElementById('board').style.display = 'none'                                    //  hide the board
+        document.getElementById('winner_screen').style.display =  'flex'                             //  show winner screen
         
-                   
-        document.getElementById('tablero').style.display = 'none';                                    //  Oculta el tablero de juego. 
-        document.getElementById('winner_screen').style.display =  'flex';                             //  Muestra la pantalla del ganador.  
-        
-        if (turno == 'turno_x') {
-           partidas_x++; 
-           document.getElementById('img-ganador').innerHTML = img_ganador_x;                         // Muestra la pantalla de quien ha ganado. 
-           document.getElementById('marcador_x').innerHTML = partidas_x;
+        if (turn == 'turn_x') {
+           games_x++; 
+           document.getElementById('img-winner').innerHTML = img_winner_x                         // Show winner screen. 
+           document.getElementById('score_x').innerHTML = games_x
         }else {
-           partidas_O++; 
-           document.getElementById('img-ganador').innerHTML = img_ganador_O;
-           document.getElementById('marcador_circulo').innerHTML = partidas_O; 
+           games_O++ 
+           document.getElementById('img-winner').innerHTML = img_winner_O
+           document.getElementById('score_circle').innerHTML = games_O 
            
         }               
     
-    }else if (!casillas_tablero.includes(0)){
-        console.log('emplate');
-        document.getElementById('tablero').style.display = 'none';
-        document.getElementById('winner_screen').style.display =  'flex';
-        document.getElementById('img-ganador').innerHTML = img_empate;
+    }else if (!squares_board.includes(0)){
+        
+        document.getElementById('board').style.display = 'none'
+        document.getElementById('winner_screen').style.display =  'flex'
+        document.getElementById('img-winner').innerHTML = img_tie
     }
 
-    
+
 }
 
-function cambiar_turno () {
+const check_squares = (square) => {
+    let id_square = 'c' + square
+    marcar_square (id_square, square)
+    change_turn()
+}
 
+function change_turn () {
     
-    if (turno == 'turno_x') {
-        turno = 'turno_circulo';
-        document.getElementById('marcador_x_wrap').classList.remove('activo');
-        document.getElementById('marcador_circulo').classList.add('activo');
-        document.getElementById('lbl_turno').innerHTML = 'Turno de O'
+    if (turn == 'turn_x') {
+        turn = 'turn_circle'
+        document.getElementById('score_x_wrap').classList.remove('active')
+        document.getElementById('score_circle').classList.add('active')
+        document.getElementById('lbl_turn').innerHTML = 'turn de O'
     }
     else {
-        turno = 'turno_x';
-        document.getElementById('marcador_circulo').classList.remove('activo');
-        document.getElementById('marcador_x_wrap').classList.add('activo');
-        document.getElementById('lbl_turno').innerHTML = 'Turno de X'
-       
+        turn = 'turn_x';
+        document.getElementById('score_circle').classList.remove('active')
+        document.getElementById('score_x_wrap').classList.add('active')
+        document.getElementById('lbl_turn').innerHTML = 'turn de X'       
     }
-    
-
 }
 
+const there_is_a_winner = () => {
 
-function hay_ganador(){
-
-
-
-    console.log('hay ganador')
-    console.log('casillas x: ' + casillas_x);
-    console.log('casillas O: ' + casillas_O);
-    console.log('long combinaciones = ' + combinaciones_ganadoras.length);
-
-    for (let i = 0; i<combinaciones_ganadoras.length; i++) {
-
-        let contador_x = 0;
-        let contador_O = 0;
-
-        for (let j=0; j<3; j++){
-
-            
-
-            if ( casillas_x.includes(combinaciones_ganadoras[i][j])){
-                contador_x++;
-            }
+    for (let i = 0; i<winning_combinations.length; i++) {
+        let counter_x = 0
+        let counter_O = 0
+        for (let j=0; j<3; j++){          
+            if ( squares_x.includes(winning_combinations[i][j])){
+                counter_x++
+            }                
+            if (squares_O.includes(winning_combinations[i][j])){
+                counter_O++
                 
-            if (casillas_O.includes(combinaciones_ganadoras[i][j])){
-                contador_O++;
-                console.log('> numero de o = ' + combinaciones_ganadoras[i][j]);
-            }
-            
-            if (contador_x  == 3 || contador_O == 3){
-                console.log('hay ganador');
-                
-                return true;
-            }
-                    
+            }            
+            if (counter_x  == 3 || counter_O == 3){
+                                
+                return true
+            }                    
         }
     }
-
-return false;
+    return false
 }
 
-function reiniciar_partida() {
-    sessionStorage.setItem('partidas_x', partidas_x);
-    sessionStorage.setItem('partidas_O', partidas_O);
-    location.reload();
 
-
+const restart_game = () => {
+    sessionStorage.setItem('games_x', games_x)
+    sessionStorage.setItem('games_O', games_O)
+    location.reload()
 }
 
-function cargar_marcador () {
-    
-    partidas_x = sessionStorage.getItem('partidas_x');
-    partidas_O = sessionStorage.getItem('partidas_O');
+const score_container = () => {    
+    games_x = sessionStorage.getItem('games_x')
+    games_O = sessionStorage.getItem('games_O')
 
-    if (partidas_x == null) {
-        partidas_x = 0;
+    if (games_x == null) {
+        games_x = 0
     }
 
-    if (partidas_O == null) {
-        partidas_O = 0;
+    if (games_O == null) {
+        games_O = 0
     }
 
-    document.getElementById('marcador_x').innerHTML = partidas_x;
-    document.getElementById('marcado_O').innerHTML = partidas_O;
-
-    
+    document.getElementById('score_x').innerHTML = games_x
+    document.getElementById('marcado_O').innerHTML = games_O
 
 }
-
-

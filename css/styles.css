@@ -1,4 +1,4 @@
-.contenedor {
+.container {
   width: 18%;
   border-radius: 10px;
   margin: 100px auto;
@@ -15,7 +15,7 @@
        
 }
 
-.marcador_contenedor {
+.score_container {
 
   width: 300px;
   margin-bottom: 10px;
@@ -27,7 +27,7 @@
   
 }
 
-.marcador {
+.score {
 
   width: 100px;
   border-radius: 8px;
@@ -40,13 +40,13 @@
     
 }
 
-.activo {
+.active {
   border-bottom-color: #14bdac;
 }
 
 
 
-.tablero-wrap {
+.board-wrap {
   width: 100%;
   margin: 0px 0px;
   padding: 10px;
@@ -55,7 +55,7 @@
 }
 
 
-.tablero {
+.board {
   
   display: grid;
   grid-template-columns: repeat(3, 100px);
@@ -67,7 +67,7 @@
 
 }
 
-.casilla {
+.square {
   border: 1px solid black;
   display: flex;
   justify-content: center;  
@@ -106,7 +106,7 @@
   cursor: pointer;
 }
 
-.imagen-ganador {     
+.winner-image {     
     margin:auto;
    
 }

@@ -8,25 +8,23 @@
   
   <script src="js/script.js" defer> </script>
 
-  <!-- import jquery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
 
-
-  <title>Tres en Raya</title>
+  <title>Tic tac Toe</title>
 </head>
 
-<body onload="cargar_marcador()">
+<body onload="score_container()">
 
   
 
-  <div class="contenedor">    
+  <div class="container">    
 
-    <div class="marcador_contenedor">
-      <div class="marcador activo" id="marcador_x_wrap">        
+    <div class="score_container">
+      <div class="score active" id="score_x_wrap">        
           <p > X </p>
-          <p id="marcador_x"> 0 </p>
+          <p id="score_x"> 0 </p>
       </div>
-      <div class="marcador" id="marcador_circulo">
+      <div class="score" id="score_circle">
            <p> O </p>
           <p id="marcado_O"> 0 </p>
       </div>
@@ -35,35 +33,35 @@
         
     </div>
 
-    <div class="label_turno" id='lbl_turno'> Turno X </div>
+    <div class="label_turn" id='lbl_turn'> turn X </div>
     
-      <div class="tablero-wrap-winner" id='tablero' >
-        <div class="tablero-wrap">
-          <div class="tablero">
+      <div class="board-wrap-winner" id='board' >
+        <div class="board-wrap">
+          <div class="board">
 
-            <div class="casilla" id='c0' onclick="validar_casilla(0)"> </div>      
-            <div class="casilla" id='c1' onclick="validar_casilla(1)"> </div>
-            <div class="casilla" id='c2' onclick="validar_casilla(2)"> </div>
-            <div class="casilla" id='c3' onclick="validar_casilla(3)"> </div>
-            <div class="casilla" id='c4' onclick="validar_casilla(4)"> </div>
-            <div class="casilla" id='c5' onclick="validar_casilla(5)"> </div>
-            <div class="casilla" id='c6' onclick="validar_casilla(6)"> </div>
-            <div class="casilla" id='c7' onclick="validar_casilla(7)"> </div>
-            <div class="casilla" id='c8' onclick="validar_casilla(8)"> </div>
+            <div class="square" id='c0' onclick="check_squares(0)"> </div>      
+            <div class="square" id='c1' onclick="check_squares(1)"> </div>
+            <div class="square" id='c2' onclick="check_squares(2)"> </div>
+            <div class="square" id='c3' onclick="check_squares(3)"> </div>
+            <div class="square" id='c4' onclick="check_squares(4)"> </div>
+            <div class="square" id='c5' onclick="check_squares(5)"> </div>
+            <div class="square" id='c6' onclick="check_squares(6)"> </div>
+            <div class="square" id='c7' onclick="check_squares(7)"> </div>
+            <div class="square" id='c8' onclick="check_squares(8)"> </div>
 
           </div>
         </div>
     </div>
-<!-- Pantalla Oculta Ganador -->
-    <div class="pantalla-ganador-x" id='winner_screen' style="display:none">
+<!-- Hidden screen winner -->
+    <div class="winner-screen-x" id='winner_screen' style="display:none">
       <div class="close-button"> &times </div>
-      <div class="imagen-ganador" id="img-ganador"> 
+      <div class="winner-image" id="img-winner"> 
         
       </div>
     </div>
 
 <!-- Boton Reset Partida -->
-    <div class="reset-game" onclick="reiniciar_partida()"> 
+    <div class="reset-game" onclick="restart_game()"> 
       <a href="#"> REINICIAR PARTIDA </a>  
     </div>
 
