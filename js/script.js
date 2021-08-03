@@ -13,6 +13,8 @@ const winning_combinations = [ [0,1,2],
 squares_x = []
 squares_O = []
 
+const TURN_X = 'turn_x'
+
 const img_winner_x = '<img src="/img/Ganador_X.png" alt=""></img>'
 const img_winner_O = '<img src="/img/Ganador_O.png" alt="No se encuentra imagen ganador X"></img>'
 const img_tie = '<img src="/img/Empate.png" alt=""></img>'
@@ -27,7 +29,7 @@ games_O = 0
 const marcar_square = (id_square, square) => {
 
     if (squares_board[square] == 0) {              
-        if (turn == 'turn_x') {
+        if (turn == TURN_X) {
             document.getElementById(id_square).innerHTML = url_x
             squares_x.push(square)
         }
